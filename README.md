@@ -22,7 +22,7 @@ VisionGuard AI is a real-time smart surveillance system that uses Deep Learning 
 - OpenCV  
 - YOLO  
 - CNN Architectures  
-- MobileNetV1 / ResNet50  
+- Siamese Network 
 
 ---
 
