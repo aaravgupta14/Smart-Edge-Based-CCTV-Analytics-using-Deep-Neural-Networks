@@ -136,7 +136,7 @@ embedding_network = Sequential([
 
     Dense(
         128,
-        activation="relu",
+        activation="None",
         name="embedding_layer"
     )
 ])
