@@ -5,6 +5,7 @@ import pickle
 from sklearn.metrics.pairwise import cosine_similarity
 import os
 import time
+import serial
 
 ADAPTIVE_DB_FILE = "adaptive_database.pkl"
 
@@ -24,6 +25,9 @@ face_cascade = cv2.CascadeClassifier(
 )
 
 cap = cv2.VideoCapture(0)
+arduino = serial.Serial("COM7", 9600)
+time.sleep(2)
+last_sent = ""
 
 unknown_buffer = []
 SAVE_INTERVAL = 5
@@ -119,6 +123,31 @@ while True:
         if best_score >= 0.95:
             label = f"{best_person} ({best_score:.2f})"
             color = (0, 255, 0)
+            person_name = best_person.strip().lower()
+            
+            if person_name == "aarav_gupta":
+                if last_sent != "AARAV":
+                    arduino.write(b"AARAV\n")
+                    last_sent = "AARAV"
+                    print("✓ Sent AARAV to Arduino")
+
+            elif person_name == "anshu_gupta":
+                if last_sent != "ANSHU":
+                    arduino.write(b"ANSHU\n")
+                    last_sent = "ANSHU"
+                    print("✓ Sent ANSHU to Arduino")
+
+            elif person_name == "rishu_gupta":
+                if last_sent != "RISHU":
+                    arduino.write(b"RISHU\n")
+                    last_sent = "RISHU"
+                    print("✓ Sent RISHU to Arduino")
+
+            elif person_name == "navya_gupta":
+                if last_sent != "NAVYA":
+                    arduino.write(b"NAVYA\n")
+                    last_sent = "NAVYA"
+                    print("✓ Sent NAVYA to Arduino")
 
         elif best_score >= 0.90:
             label = f"Possible {best_person} ({best_score:.2f})"
@@ -155,6 +184,10 @@ while True:
 
             label = f"Unknown ({best_score:.2f})"
             color = (0, 0, 255)
+            if last_sent != "UNKNOWN":
+                arduino.write(b"UNKNOWN\n")
+                last_sent = "UNKNOWN"
+                print("✓ Sent UNKNOWN to Arduino")
 
         cv2.rectangle(frame, (x1, y1), (x2, y2), color, 2)
         cv2.putText(
@@ -172,4 +205,5 @@ while True:
         break
 
 cap.release()
+arduino.close()
 cv2.destroyAllWindows()
