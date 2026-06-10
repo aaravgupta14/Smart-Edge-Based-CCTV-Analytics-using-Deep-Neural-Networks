@@ -50,5 +50,15 @@ VisionGuard AI is a real-time smart surveillance system that uses Deep Learning 
 
 - Smart CCTV systems  
 - Campus security  
-- Office monitoring  
-- Smart attendance systems  
+- Office monitoring
+- Smart attendance systems
+
+- ---
+## Demo
+
+https://github.com/user-attachments/assets/3967846b-153c-4701-adc7-0efa40187e9f
+
+https://github.com/user-attachments/assets/2b3a11c0-0384-4523-b1e2-176764620356
+
+
+
